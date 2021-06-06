@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'ISP.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'isp',
-        'USER': 'postgres',
-        'PASSWORD': 'misijui',
+        'NAME': 'django_backend',
+        'USER': 'marcel',
+        'PASSWORD': 'hatasijui',
         'HOST': 'localhost',
         'PORT': '',
     }

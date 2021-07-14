@@ -25,7 +25,7 @@ SECRET_KEY = '-yaw(9q^1##174tzg-%otbjx*s2af-e01pi&w@4qt$&v-5=isl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -39,16 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'apis',
+    'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'ISP.urls'
@@ -69,7 +74,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ISP.wsgi.application'
+ALLOWED_HOSTS=['*']
+CORS_ALLOWED_ORIGINS = [
+  "http://127.0.0.1:3000",
+    
+]
+
 
 
 # Database
@@ -78,8 +88,8 @@ WSGI_APPLICATION = 'ISP.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_backend',
-        'USER': 'marcel',
+        'NAME': 'project_backend',
+        'USER': 'postgres',
         'PASSWORD': 'hatasijui',
         'HOST': 'localhost',
         'PORT': '',
@@ -125,4 +135,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'apis.User'
+APPEND_SLASH=False
+SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_SECURE = True
+CORS_ALLOW_CREDENTIALS = True
+
 #this overides the existing user model, in continuation  to what has been done on that model.

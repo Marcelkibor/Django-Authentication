@@ -15,6 +15,7 @@ class RegisterView (APIView):
         return Response(serializer.data)
 class LoginView(APIView):
     def post(self, request):
+        #email and password set for accessing the 
         email = request.data['email']
         password = request.data['password']
 
@@ -32,10 +33,11 @@ class LoginView(APIView):
             'iat': datetime.datetime.utcnow()
         }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, 'secret', algorithm='HS256')
 
-        response = Response()
-
+        
+        response   = Response()
+       
         response.set_cookie(key='jwt', value=token, httponly=True)
         response.data = {
             'jwt': token
@@ -52,7 +54,7 @@ class UserView(APIView):
             raise AuthenticationFailed('Authentication Failed')
         user = User.objects.filter(id = payload['id']).first()
         user_details = registerSerializer(user)
-        return Response(user_details)
+        return Response(user_details.data)
         
 class LogoutView(APIView):
     def post(self, request):

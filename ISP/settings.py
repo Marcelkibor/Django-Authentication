@@ -41,19 +41,22 @@ INSTALLED_APPS = [
     'apis',
     'corsheaders',
     
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+  
+   
+    
 ]
 
 ROOT_URLCONF = 'ISP.urls'
@@ -75,10 +78,7 @@ TEMPLATES = [
 ]
 
 ALLOWED_HOSTS=['*']
-CORS_ALLOWED_ORIGINS = [
-  "http://127.0.0.1:3000",
-    
-]
+
 
 
 
@@ -88,8 +88,8 @@ CORS_ALLOWED_ORIGINS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'project_backend',
-        'USER': 'postgres',
+        'NAME': 'shoes',
+        'USER': 'marcel',
         'PASSWORD': 'hatasijui',
         'HOST': 'localhost',
         'PORT': '',
@@ -136,8 +136,8 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'apis.User'
 APPEND_SLASH=False
-SESSION_COOKIE_SAMESITE = None
-SESSION_COOKIE_SECURE = True
-CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CRIDENTIALS = True
 
 #this overides the existing user model, in continuation  to what has been done on that model.

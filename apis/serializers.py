@@ -3,7 +3,7 @@ from .models import User
 class registerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','name','email','password']
+        fields = ['id','username','email','password']
         extra_kwargs = {
         'password':{'write_only':True}# blocks write access to password field
     }
